@@ -45,18 +45,32 @@ def esm_test(model, dataloader):
     with torch.no_grad():
         test_correct = 0
         total_loss = 0
+        i = 0
+        predictions = torch.empty(len(dataloader)).type(torch.LongTensor)
+        logits = torch.empty((len(dataloader), 2)).type(torch.LongTensor)
         for batch, labels in dataloader:
             # input = batch.clone()
             inputs = tokenizer(batch, return_tensors="pt", padding='max_length', max_length=1001)
             # print(inputs, labels)
             output = model(inputs['input_ids'].to(device), inputs['attention_mask'].to(device), labels=labels.to(device)) # type: ignore
             pred = torch.argmax(output.logits, dim=1)
+            predictions[i*batch:(i+1)*batch] = pred
+            logits[i*batch:(i+1)*batch] = output.logits
             test_correct += (pred.cpu() == labels).float().sum()
 
             loss = output.loss
             total_loss += loss.cpu()
+            
+            i+=1
+
+
         accuracy = test_correct / len(dataloader)
-    return total_loss, accuracy
+    return {
+            "loss":total_loss, 
+            "accuracy":accuracy, 
+            "predictions":predictions,
+            "logits":logits
+        }
 
 def load_pretrained_esm(
         saved_model_name:str='esm2_viral_protein.pt', 
