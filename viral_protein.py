@@ -15,7 +15,7 @@ def esm_collate(sample):
     inputs = tokenizer(inputs, return_tensors="pt", padding='max_length', max_length=1000)
     return inputs, labels
 
-def train(model, dataloader):
+def esm_train(model, dataloader):
     model.train()
     model.to(device)
     epochs = 100
@@ -38,7 +38,7 @@ def train(model, dataloader):
         # if (epoch+1)%40==0 or epoch==0:
         print("Epoch: {} -> loss: {}".format(epoch+1, total_loss/(len(dataloader))))
 
-def test(model, dataloader):
+def esm_test(model, dataloader):
     model.eval()
     model.to(device)
     
