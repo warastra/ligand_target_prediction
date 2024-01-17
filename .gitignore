@@ -1,4 +1,4 @@
 testing*
 *maskedLM*
-*.csv
 *.tsv
+*.pkl

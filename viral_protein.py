@@ -24,10 +24,10 @@ def esm_train(model, dataloader):
 
     for epoch in range(epochs):
         total_loss = 0
-        for batch, labels in dataloader:
+        for inputs, labels in dataloader:
             optim.zero_grad()
             # input = batch.clone()
-            inputs = tokenizer(batch, return_tensors="pt", padding='max_length', max_length=1001)
+            # inputs = tokenizer(batch, return_tensors="pt", padding='max_length', max_length=1001)
             # print(inputs, labels)
 
             loss = model(inputs['input_ids'].to(device), inputs['attention_mask'].to(device), labels=labels.to(device)).loss # type: ignore
@@ -46,8 +46,8 @@ def esm_test(model, dataloader):
         test_correct = 0
         total_loss = 0
         i = 0
-        predictions = torch.empty(len(dataloader)).type(torch.LongTensor)
-        logits = torch.empty((len(dataloader), 2)).type(torch.LongTensor)
+        predictions = torch.empty(len(dataloader), dtype=torch.LongTensor)  # type: ignore 
+        logits = torch.empty((len(dataloader), 2), dtype=torch.LongTensor)  # type: ignore
         for batch, labels in dataloader:
             # input = batch.clone()
             inputs = tokenizer(batch, return_tensors="pt", padding='max_length', max_length=1001)
