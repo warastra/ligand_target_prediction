@@ -2,3 +2,5 @@ testing*
 *maskedLM*
 *.tsv
 *.pkl
+*.png
+dump/*
