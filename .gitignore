@@ -4,3 +4,4 @@ testing*
 *.pkl
 *.png
 dump/*
+images/*
