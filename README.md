@@ -3,8 +3,10 @@
 ## Viral Protein Classification
 The model `esm2_viral_protein.pt` is fine-tuned from facebook's ESM-2 to predict whether a protein comes from virus or not from their amino acid sequence. the model is trained on proteins found in <a href='https://library.ucsd.edu/dc/object/bb6496315b'>BindingDB ligand target dataset</a>
 
+Training procedures can be found in `viral_protein_classification.ipynb` notebook
+
 ## Ligand-Target Binding Affinity Prediction
-The `esm2_viral_protein_ligand_IC50_100nM_classifier_v3_final.pt` is a classification model predicting if the IC50 value of a small molecule ligand and protein pair is below certain threshold (10 nM). Trained on BindingDB dataset.
+The `esm2_viral_protein_ligand_IC50_100nM_classifier_v3_final.pt` is a classification model predicting if the IC50 value of a small molecule ligand and protein pair is below certain threshold (10 nM). Trained on BindingDB dataset. Training procedures can be found in `ligand_target.ipynb` notebook
 
 ![image](https://github.com/warastra/ligand_target_prediction/assets/36398445/a3580417-a402-4c0c-9f07-4775a4777f12)
 
