@@ -2,6 +2,10 @@
 
 the model esm2_viral_protein.pt is fine-tuned from facebook's ESM-2 to predict whether a protein comes from virus or not from their amino acid sequence. the model is trained on proteins found in <a href='https://library.ucsd.edu/dc/object/bb6496315b'>BindingDB ligand target dataset</a>
 
+# Model Architecture
+![image](https://github.com/warastra/ligand_target_prediction/assets/36398445/a3580417-a402-4c0c-9f07-4775a4777f12)
+
+
 # References
 ESM-2
 ```
